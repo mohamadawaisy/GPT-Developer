@@ -5,8 +5,9 @@ from dependencies import save_data, load_data, save_requirements, load_requireme
 from fastapi import Query
 import os
 import subprocess
+import docker
 app = FastAPI()
-
+client = docker.from_env()
 class Function(BaseModel):
     name: str
     code: str
@@ -99,7 +100,7 @@ def list_requirements():
 def run_main():
     # Load all functions from the data file
     functions = load_data(CODE_FILE)
-    
+
     # If there are no functions, return an error
     if not functions:
         raise HTTPException(status_code=404, detail="No functions found")
@@ -129,14 +130,27 @@ def run_main():
     except IOError as e:
         raise HTTPException(status_code=500, detail=f"Failed to write to script file: {e}")
 
-    # Execute the script file
+    # Run the script in a Docker container
     try:
-        result = subprocess.run(['python', script_file_path], text=True, capture_output=True, check=True, timeout=5)
-        return {"status": "success", "output": result.stdout}
-    except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=500, detail="The process timed out.")
-    except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail=f"Failed to execute script: {e}")
+        container = client.containers.run(
+            image="my_python_sandbox",
+            command=["/bin/bash", "-c", f"python /app/{script_file_path}"],
+            volumes={
+                os.path.abspath(script_file_path): {
+                    'bind': f'/app/{script_file_path}',
+                    'mode': 'ro'
+                }
+            },
+            remove=True,
+            stdout=True,
+            stderr=True
+        )
+        output = container.decode("utf-8")
+        return {"status": "success", "output": output}
+    except docker.errors.ContainerError as e:
+        raise HTTPException(status_code=500, detail=f"Container error: {e.stderr.decode('utf-8')}")
+    except docker.errors.DockerException as e:
+        raise HTTPException(status_code=500, detail=f"Docker error: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

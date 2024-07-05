@@ -1,0 +1,7 @@
+requests
+docker
+fastapi
+uvicorn
+pydantic
+python-multipart
+psutil

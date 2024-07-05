@@ -1,0 +1,1 @@
+when the chat is about code use the actions external calls to manage the code

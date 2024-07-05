@@ -1,0 +1,419 @@
+openapi: 3.1.0
+info:
+  title: Marten API
+  description: API for managing functions and requirements.
+  version: 1.0.0
+servers:
+  - url: https://marten-calm-sunbird.ngrok-free.app
+    description: Development server
+paths:
+  /functions/:
+    post:
+      operationId: manageFunctionsPost
+      summary: Add or update a function.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: MyFunction
+                code:
+                  type: string
+                  example: "def my_function(): return 'Hello, World!'"
+              required:
+                - name
+                - code
+      responses:
+        "200":
+          description: Function added or updated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Function has been added/updated successfully.
+    put:
+      operationId: manageFunctionsPut
+      summary: Add or update a function.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: MyFunction
+                code:
+                  type: string
+                  example: "def my_function(): return 'Hello, World!'"
+              required:
+                - name
+                - code
+      responses:
+        "200":
+          description: Function added or updated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Function has been added/updated successfully.
+    get:
+      operationId: getFunction
+      summary: Get a function by name.
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+            example: MyFunction
+      responses:
+        "200":
+          description: Function found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: MyFunction
+                  code:
+                    type: string
+                    example: "def my_function(): return 'Hello, World!'"
+        "404":
+          description: Function not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: Function not found.
+  /requirements/:
+    get:
+      operationId: listRequirements
+      summary: List all requirements.
+      responses:
+        "200":
+          description: List of packages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  packages:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - numpy
+                      - pandas
+                      - requests
+  /requirements/add/:
+    post:
+      operationId: addRequirement
+      summary: Add a package to requirements.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                package_name:
+                  type: string
+                  example: numpy
+              required:
+                - package_name
+      responses:
+        "200":
+          description: Package added successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Package added successfully.
+        "400":
+          description: Package already in list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Package already in list.
+  /requirements/remove/:
+    post:
+      operationId: removeRequirement
+      summary: Remove a package from requirements.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                package_name:
+                  type: string
+                  example: numpy
+              required:
+                - package_name
+      responses:
+        "200":
+          description: Package removed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Package removed successfully.
+        "400":
+          description: Package not found in list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Package not found in list.
+  /requirements/install/:
+    post:
+      operationId: installRequirements
+      summary: Install all packages from requirements.
+      responses:
+        "200":
+          description: Packages installed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: All packages installed successfully.
+        "500":
+          description: Failed to install packages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Failed to install packages.
+  /run-main/:
+    post:
+      operationId: runMain
+      summary: Run the main function.
+      responses:
+        "200":
+          description: Main function executed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  output:
+                    type: string
+                    example: "Main function executed with output: Hello, World!"
+        "404":
+          description: Main function not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: Main function not found.
+        "500":
+          description: Error occurred during execution.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: An error occurred during execution.
+  /functions/bulk/:
+    post:
+      operationId: bulkAddUpdateFunctions
+      summary: Add or update multiple functions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                functions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: MyFunction
+                      code:
+                        type: string
+                        example: "def my_function(): return 'Hello, World!'"
+                    required:
+                      - name
+                      - code
+      responses:
+        "200":
+          description: Functions added or updated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Functions have been added/updated successfully.
+  /requirements/bulk/:
+    post:
+      operationId: bulkAddRequirements
+      summary: Add multiple packages to requirements.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      package_name:
+                        type: string
+                        example: numpy
+                    required:
+                      - package_name
+      responses:
+        "200":
+          description: Packages added successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Packages added successfully.
+        "400":
+          description: One or more packages already in list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: One or more packages already in list.
+  /functions/multiple/:
+    post:
+      operationId: getMultipleFunctions
+      summary: Retrieve multiple functions by names.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                names:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - FunctionOne
+                    - FunctionTwo
+      responses:
+        "200":
+          description: Functions retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: FunctionOne
+                    code:
+                      type: string
+                      example: "def function_one(): return 'Hello, World!'"
+        "404":
+          description: One or more functions not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: One or more functions not found.

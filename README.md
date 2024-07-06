@@ -19,6 +19,8 @@ GPT-Developer is a project that leverages OpenAI's GPT technology to assist in v
     ```sh
     git clone https://github.com/mohamadawaisy/GPT-Developer.git
     cd GPT-Developer
+    python -m venv myenv
+    source myenv/bin/activate
     ```
 2. Build the Docker image:
     ```sh
@@ -44,29 +46,15 @@ GPT-Developer is a project that leverages OpenAI's GPT technology to assist in v
 - Adjust configurations in `GPT.yaml` to suit your environment and preferences.
 
 ## Creating Your Own GPT
-### Prerequisites
-- OpenAI API Key
-- Access to a dataset for fine-tuning
 
 ### Steps
 1. Set up OpenAI API credentials:
     - Create an account on the OpenAI platform and obtain an API key.
     - Store the API key in a secure location.
 
-2. Prepare your dataset:
-    - Ensure your dataset is in the correct format for training (e.g., JSON, CSV).
-    - Upload the dataset to a storage location accessible by your training environment.
+2. Update the configuration in `GPT.yaml` to use the OpenAI API.
 
-3. Fine-tune the GPT model:
-    - Modify the `fine_tune.py` script to include paths to your dataset and other relevant parameters.
-    - Run the fine-tuning script:
-    ```sh
-    python fine_tune.py --data_path <your_dataset_path> --output_model <output_model_path>
-    ```
-
-4. Integrate the fine-tuned model:
-    - Update the configuration in `GPT.yaml` to use the fine-tuned model.
-    - Test the integration by running the main script:
+3. Test the integration by running the main script:
     ```sh
     python main.py
     ```

@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: Marten API
+  title: GPT-Developer API
   description: API for managing functions and requirements.
   version: 1.0.0
 servers:
-  - url: https://marten-calm-sunbird.ngrok-free.app
+  - url: localhost
     description: Development server
 paths:
   /functions/:

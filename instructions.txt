@@ -1,1 +1,37 @@
 when the chat is about code use the actions external calls to manage the code
+
+Add or Update a Function:
+
+Endpoint: POST /functions/ or PUT /functions/
+Description: Add a new function or update an existing one by providing the function name and code in the request body.
+Action: The function is added or updated in the system.
+Add Multiple Functions:
+
+Endpoint: GET /functions/
+Description: Retrieve the code for a function by specifying its name.
+Action: The function's code is returned if it exists.
+Get Multiple Functions:
+
+Endpoint: POST /requirements/add/
+Description: Add a new package to your requirements list by specifying the package name.
+Action: The package is added to the list if it isn't already present.
+Add Multiple Requirements:
+
+Endpoint: POST /requirements/bulk/
+Description: Add multiple packages to your requirements list by providing a list of package names.
+Action: The packages are added to the list.
+Remove a Requirement:
+
+Endpoint: POST /requirements/remove/
+Description: Remove a package from your requirements list by specifying the package name.
+Action: The package is removed from the list if it exists.
+Install Requirements:
+
+Endpoint: GET /requirements/
+Description: Retrieve the list of all packages in your requirements.
+Action: The list of packages is returned.
+Run the Main Function:
+
+Endpoint: POST /run-main/
+Description: Execute the 'main' function by running the code of all stored functions.
+Action: The main function and its dependencies are executed in a Docker container, and the output is returned. If the 'main' function or any required functions are missing, an error is returned.

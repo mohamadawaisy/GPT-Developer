@@ -1,7 +1,27 @@
 # GPT-Developer
 
 ## About
-GPT-Developer is a project that leverages OpenAI's GPT technology to assist in various development tasks. This project includes scripts and configurations for setting up and running GPT-based tools in a development environment.
+GPT-Developer is a project that leverages OpenAI's GPT technology to assist in various development tasks. This project includes scripts and configurations for setting up and running GPT-based tools in a development environment. Below is a simple diagram to illustrate the architecture:
+
+### Project Topology
+Understanding the architecture of GPT-Developer is crucial to appreciating its capabilities:
+
+- **Custom GPT:** This is the model that interprets commands and requests.
+- **Actions Call Backend:** The GPT calls specific actions which interact with the backend.
+- **Backend:** Manages code functions, executing tasks as requested by the GPT.
+
+### Capabilities
+GPT-Developer offers extensive capabilities, including:
+
+- **Fetching and Updating:** Retrieve and modify code snippets with ease.
+- **Refactoring:** Improve and optimize existing code for better performance and readability.
+- **Running Code:** Execute code and return results in real-time.
+- **Debugging:** Identify and fix issues within the code quickly.
+- **Testing:** Perform unit tests and ensure code quality.
+- **Continuous Development:** Support ongoing development processes with intelligent automation.
+
+### Interactive Workflow with GPT-Developer
+In the realm of software development, efficiency and accuracy are paramount. GPT-Developer enhances these aspects by providing a dynamic interaction model where developers can seamlessly create, modify, and optimize their applications. Below, we detail a comprehensive workflow that demonstrates the capabilities of GPT-Developer in facilitating a full development cycle.
 
 ## Features
 - Integration with GPT models to provide development assistance.
@@ -9,6 +29,7 @@ GPT-Developer is a project that leverages OpenAI's GPT technology to assist in v
 - Python scripts for handling dependencies and main functionality.
 
 ## Installation
+
 ### Prerequisites
 - Docker
 - Python 3.x
@@ -43,15 +64,14 @@ GPT-Developer is a project that leverages OpenAI's GPT technology to assist in v
 2. Follow the on-screen instructions to utilize the development assistance features provided by the GPT model.
 
 ## Configuration
-- Adjust configurations in `GPT.yaml` to suit your environment and preferences.
+Adjust configurations in `GPT.yaml` to suit your environment and preferences.
 
 ## Creating Your Own GPT
 
 ### Steps
-
-1. Update the configuration in `GPT.yaml` to use the OpenAI GPT.
-
-2. Test the integration by running the main script:
+1. Define your custom actions and backend services that the GPT will interact with.
+2. Update the configuration in `GPT.yaml` to integrate your custom GPT and actions.
+3. Test the integration by running the main script:
     ```sh
     python main.py
     ```

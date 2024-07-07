@@ -76,6 +76,11 @@ Adjust configurations in `GPT.yaml` to suit your environment and preferences.
     python main.py
     ```
 
+## Limitations
+Currently, GPT-Developer is optimized for supporting small to medium-sized applications and is focused on Python-based projects. This scope allows for a robust and manageable development environment, ensuring reliable performance and functionality for typical use cases within these parameters.
+
+However, the project is designed with extensibility in mind and can be expanded to support a broader range of applications and programming languages in the future. Contributions to extend its capabilities are welcome and encouraged.
+
 ## Contributing
 Contributions are welcome! Please fork the repository and submit pull requests.
 

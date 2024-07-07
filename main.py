@@ -77,17 +77,6 @@ def manage_functions(function: Function):
     save_data(CODE_FILE, functions)
     return {"status": "success", "message": f"Function {function.name} {'updated' if updated else 'added'} successfully."}
 
-# @app.post('/functions/bulk/')
-# def manage_multiple_functions(functions: List[Function]):
-#     existing_functions = load_data(CODE_FILE)
-#     function_dict = {func['name']: func['code'] for func in existing_functions}
-
-#     for function in functions:
-#         function_dict[function.name] = function.code  # Updates or adds new function
-
-#     save_data(CODE_FILE, list(map(lambda name: {'name': name, 'code': function_dict[name]}, function_dict.keys())))
-#     return {"status": "success", "message": "Functions updated successfully."}
-
 @app.get('/functions/')
 def get_function(name: str):
     functions = load_data(CODE_FILE)
@@ -95,14 +84,6 @@ def get_function(name: str):
         if func['name'] == name:
             return func
     raise HTTPException(status_code=404, detail="Function not found")
-
-# @app.get('/functions/multiple/')
-# def get_multiple_functions(names: List[str]):
-#     functions = load_data(CODE_FILE)
-#     result = [func for func in functions if func['name'] in names]
-#     if not result:
-#         raise HTTPException(status_code=404, detail="One or more functions not found")
-#     return result
 
 @app.post('/requirements/add/')
 def add_requirement(requirement: Requirement):
@@ -132,11 +113,6 @@ def remove_requirement(requirement: Requirement):
         save_requirements(packages)
         return {"status": "success", "message": f"Package {requirement.package_name} removed successfully."}
     return {"status": "error", "message": "Package not found in list."}
-
-# @app.post('/requirements/install/')
-# def install_requirements():
-#     success, message = install_packages()
-#     return {"status": "success" if success else "error", "message": message}
 
 @app.get('/requirements/')
 def list_requirements():

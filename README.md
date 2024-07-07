@@ -81,6 +81,11 @@ Currently, GPT-Developer is optimized for supporting small to medium-sized appli
 
 However, the project is designed with extensibility in mind and can be expanded to support a broader range of applications and programming languages in the future. Contributions to extend its capabilities are welcome and encouraged.
 
+For more information and insights, check out the following links:
+
+- [The Power of GPT Developer: A Deep Dive into Custom GPTs and Actions by Customize Code Interpreter](https://medium.com/@mr.ma.swi/the-power-of-gpt-developer-a-deep-dive-into-custom-gpts-and-actions-by-customize-code-interpreter-a05c4d744698)
+- [LinkedIn Profile of Muhamad Awaisy](https://www.linkedin.com/in/muhamad-awaisy-a32966101/)
+
 ## Contributing
 Contributions are welcome! Please fork the repository and submit pull requests.
 

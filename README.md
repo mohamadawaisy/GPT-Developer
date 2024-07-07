@@ -48,13 +48,10 @@ GPT-Developer is a project that leverages OpenAI's GPT technology to assist in v
 ## Creating Your Own GPT
 
 ### Steps
-1. Set up OpenAI API credentials:
-    - Create an account on the OpenAI platform and obtain an API key.
-    - Store the API key in a secure location.
 
-2. Update the configuration in `GPT.yaml` to use the OpenAI API.
+1. Update the configuration in `GPT.yaml` to use the OpenAI GPT.
 
-3. Test the integration by running the main script:
+2. Test the integration by running the main script:
     ```sh
     python main.py
     ```

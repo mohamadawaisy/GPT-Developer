@@ -45,11 +45,11 @@ In the realm of software development, efficiency and accuracy are paramount. GPT
     ```
 2. Build the Docker image:
     ```sh
-    docker build -t gpt-developer .
+    docker build -t my_python_sandbox .
     ```
 3. Run the Docker container:
     ```sh
-    docker run -it gpt-developer
+    # Running the container is not necessary for this setup.
     ```
 4. Install Python dependencies:
     ```sh
@@ -64,7 +64,7 @@ In the realm of software development, efficiency and accuracy are paramount. GPT
 2. Follow the on-screen instructions to utilize the development assistance features provided by the GPT model.
 
 ## Configuration
-Adjust configurations in `GPT.yaml` to suit your environment and preferences.
+Adjust configurations in `GPT.yaml` to suit your environment and preferences. Ensure you replace `localhost` in the YAML configuration with a public address if needed.
 
 ## Creating Your Own GPT
 

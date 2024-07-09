@@ -47,11 +47,7 @@ In the realm of software development, efficiency and accuracy are paramount. GPT
     ```sh
     docker build -t my_python_sandbox .
     ```
-3. Run the Docker container:
-    ```sh
-    # Running the container is not necessary for this setup.
-    ```
-4. Install Python dependencies:
+3. Install Python dependencies:
     ```sh
     pip install -r main_requirements.txt
     ```
